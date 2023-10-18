@@ -8,10 +8,10 @@ import torch.utils.data
 import torchvision
 import torchvision.models.detection
 import torchvision.models.detection.mask_rcnn
-from torchvision.models.detection import fasterrcnn_resnet50_fpn
 import utils
 from coco_utils import get_dataset
 from engine import evaluate, train_one_epoch
+from fasterrcnn import fasterrcnn_resnet50_fpn
 
 
 def get_transform(is_train, args):
