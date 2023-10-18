@@ -11,7 +11,7 @@ import torchvision.models.detection.mask_rcnn
 import utils
 from coco_utils import get_dataset
 from engine import evaluate, train_one_epoch
-from fasterrcnn import fasterrcnn_resnet50_fpn
+from dg_fasterrcnn import DGFasterRCNN
 
 
 def get_transform(is_train, args):
@@ -27,6 +27,8 @@ def get_args_parser(add_help=True):
     parser = argparse.ArgumentParser(description="PyTorch Detection Training", add_help=add_help)
 
     parser.add_argument("--data-path", default="/datasets01/COCO/022719/", type=str, help="dataset path")
+
+    parser.add_argument("--ann-folder", default="annotations/1classes", type=str, help="the folder name of the annotation files")
 
     parser.add_argument("--device", default="cuda", type=str, help="device (Use cuda or cpu Default: cuda)")
     parser.add_argument(
@@ -93,6 +95,9 @@ def get_args_parser(add_help=True):
 
     parser.add_argument("--backend", default="PIL", type=str.lower, help="PIL or tensor - case insensitive")
 
+    parser.add_argument('--img-dg', action="store_true", help="whether the image level domain generalization is included during training")
+    parser.add_argument('--ins-dg', action="store_true", help="whether the box level domain generalization is included during training")
+
     return parser
 
 
@@ -106,8 +111,8 @@ def main(args):
     # Data loading code
     print("Loading data")
 
-    dataset, num_classes = get_dataset(args.data_path, transforms=get_transform(True, args), ann_folder="annotations/2classes", image_set='train')
-    dataset_test, _ = get_dataset(args.data_path, transforms=get_transform(False, args), ann_folder="annotations/2classes", image_set='val')
+    dataset, num_classes, num_domains = get_dataset(args.data_path, transforms=get_transform(True, args), ann_folder=args.ann_folder, image_set='train')
+    dataset_test, _, _ = get_dataset(args.data_path, transforms=get_transform(False, args), ann_folder=args.ann_folder, image_set='val')
 
     print("Creating data loaders")
 
@@ -135,8 +140,10 @@ def main(args):
     if args.rpn_score_thresh is not None:
         kwargs["rpn_score_thresh"] = args.rpn_score_thresh
 
-    model = fasterrcnn_resnet50_fpn(
-        weights=args.weights, weights_backbone=args.weights_backbone, num_classes=num_classes+1, **kwargs
+    model = DGFasterRCNN(
+        weights=args.weights, weights_backbone=args.weights_backbone, 
+        num_classes=num_classes+1, num_domains=num_domains, 
+        img_dg=args.img_dg, ins_dg=args.ins_dg, **kwargs
     )
     model.to(device)
 

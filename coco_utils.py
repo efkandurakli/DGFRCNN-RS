@@ -222,6 +222,7 @@ class RoofDetection(torchvision.datasets.CocoDetection):
         super().__init__(img_folder, ann_file)
         self._transforms = transforms
         self.num_classes = len(self.coco.getCatIds())
+        self.num_domains = 10
 
     def _find_domain(self, image_id):
         file_name = self.coco.loadImgs(image_id)[0]["file_name"]
@@ -259,9 +260,9 @@ def get_dataset(
     ann_file_path = os.path.join(root, ann_folder, image_set+".json")
 
     dataset = RoofDetection(img_folder, ann_file_path, transforms=transforms)
-    num_classes = dataset.num_classes
+    num_classes, num_domains = dataset.num_classes, dataset.num_domains
 
     if "train" in image_set:
         dataset = _coco_remove_images_without_annotations(dataset)
 
-    return dataset, num_classes
+    return dataset, num_classes, num_domains
