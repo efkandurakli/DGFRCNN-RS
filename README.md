@@ -31,10 +31,10 @@ shift problem
 
 ## Expriments & Results
 
-|               | image   | instance | consistency | mAP   | mAP@50   | 
-|---------------|:-------:|:--------:|:-----------:|:-----:|:--------:|
-| Faster R-CNN  |         |          |             |       |          |
-| DGFRCNN-RS    |   ✓     |          |             |       |          | 
-| DGFRCNN-RS    |         |     ✓    |             |       |          |
-| DGFRCNN-RS    |   ✓     |     ✓    |             |       |          |
-| DGFRCNN-RS    |   ✓     |     ✓    |       ✓     |       |          |
+|               | image   | instance | consistency | mAP     | mAP@50   | 
+|---------------|:-------:|:--------:|:-----------:|:-------:|:--------:|
+| Faster R-CNN  |         |          |             |  0.106  |  0.223   |
+| DGFRCNN-RS    |   ✓     |          |             |         |          | 
+| DGFRCNN-RS    |         |     ✓    |             |         |          |
+| DGFRCNN-RS    |   ✓     |     ✓    |             |         |          |
+| DGFRCNN-RS    |   ✓     |     ✓    |       ✓     |         |          |
