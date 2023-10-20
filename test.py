@@ -11,7 +11,7 @@ from engine import evaluate
 from dg_fasterrcnn import DGFasterRCNN
 
 def get_transform(args):
-    return presets.DetectionPresetEval(backend=args.backend, use_v2=args.use_v2)
+    return presets.DetectionPresetEval(backend=args.backend)
 
 
 def get_args_parser(add_help=True):

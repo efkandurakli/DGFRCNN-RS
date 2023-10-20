@@ -7,10 +7,10 @@ from dg_heads import DGImgHead, DGInsHead
 class DGFasterRCNN(nn.Module):
     def __init__(
             self, 
-            weights, 
-            weights_backbone, 
             num_classes, 
             num_domains,
+            weights=None, 
+            weights_backbone=None, 
             img_dg = False,
             ins_dg = False,
             **kwargs
