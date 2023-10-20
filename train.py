@@ -209,7 +209,7 @@ def main(args):
 
         if map50 > best_map50:
             best_map50 = map50
-            utils.save_on_master(checkpoint, os.path.join(args.output_dir, f"best_model_{epoch}.pth"))
+            utils.save_on_master(checkpoint, os.path.join(args.output_dir, f"best_model.pth"))
             epochs_without_improvement = 0
         else:
             epochs_without_improvement += 1

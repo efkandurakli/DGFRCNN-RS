@@ -42,7 +42,7 @@ class DGImgHead(nn.Module):
         x=self.reLu(self.fc(x))
         x=self.classifier(x)
         
-        return x
+        return self.softmax(x)
 
 
 class DGInsHead(nn.Module):
@@ -74,4 +74,4 @@ class DGInsHead(nn.Module):
 
         x = self.classifier(x)
 
-        return x
+        return self.softmax(x)
