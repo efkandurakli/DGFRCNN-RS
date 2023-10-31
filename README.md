@@ -34,7 +34,7 @@ shift problem
 |               | image   | instance | consistency | mAP     | mAP@50   | 
 |---------------|:-------:|:--------:|:-----------:|:-------:|:--------:|
 | Faster R-CNN  |         |          |             |  0.106  |  0.223   |
-| DGFRCNN-RS    |   ✓     |          |             |         |          | 
-| DGFRCNN-RS    |         |     ✓    |             |         |          |
-| DGFRCNN-RS    |   ✓     |     ✓    |             |         |          |
-| DGFRCNN-RS    |   ✓     |     ✓    |       ✓     |         |          |
+| DGFRCNN-RS    |   ✓     |          |             |  0.108  |  0.225   | 
+| DGFRCNN-RS    |         |     ✓    |             |  0.111  |  0.229   |
+| DGFRCNN-RS    |   ✓     |     ✓    |             |  0.112  |  0.231   |
+| DGFRCNN-RS    |   ✓     |     ✓    |       ✓     |  **0.115**  |  **0.234**   |
