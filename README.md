@@ -25,9 +25,9 @@ America as the test set, and ten cities from the remaining four
 continents as the training set. Each city represents a different
 domain. The roof type distribution in the dataset is highly
 imbalanced. In order to avoid dealing with the imbalanced
-class problem, we removed all classes except for the two most
-dominant ones since our primary task is to address the domain
-shift problem
+class problem, we utilized this dataset for building detection, 
+treating all these twelve distinct categories as a single class 
+representing buildings.
 
 ## Expriments & Results
 
